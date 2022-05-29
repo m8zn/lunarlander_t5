@@ -2,7 +2,6 @@ import gym
 
 from stable_baselines3 import DDPG
 from stable_baselines3.common.evaluation import evaluate_policy
-from rewardWrapper import RewardWrapper
 
 import time
 import os
@@ -28,7 +27,7 @@ env.reset()
 model = DDPG('MlpPolicy', env, verbose=1, tensorboard_log=logdir)
 # Train the agent
 TIMESTEPS = 10000
-for i in range(1,60):
+for i in range(1,100):
     model.learn(total_timesteps=TIMESTEPS, reset_num_timesteps=False, tb_log_name=f"DDPG-{timestamp}")
     model.save(f"{models_dir}/{TIMESTEPS*i}")       # save model every 10000 steps
 
